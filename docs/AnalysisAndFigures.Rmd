@@ -18,7 +18,7 @@ library(magrittr)
 ```
 
 Download the datasheet, load it, and prepare the data 
-```{r}
+```{r warning=FALSE}
 target_file <- paste0(here::here(),"/data/literature_datasheet.xlsx")
 
 downloaded_file <- googledrive::drive_download(file="https://docs.google.com/spreadsheets/d/1QCnLUwvHdO8qGGpwNYCdU_2eycPX1PkUnuxRS8RGkbs/edit#gid=1007627490", path=target_file, type = "xlsx", overwrite=T)
