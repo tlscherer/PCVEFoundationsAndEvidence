@@ -87,16 +87,16 @@ datasheet_community  <- readxl::read_excel(target_file, sheet="Community Resilie
 # Type Tally
 
 ```{r}
-youth_types <- datasheet_youth %>% dplyr::count(type, sort=TRUE) %>% 
+youth_types <- datasheet_youth %>% dplyr::count(document_type, sort=TRUE) %>% 
   dplyr::rename(Youth = n)
   
-gender_types <- datasheet_gender %>% dplyr::count(type, sort=TRUE) %>% 
+gender_types <- datasheet_gender %>% dplyr::count(document_type, sort=TRUE) %>% 
   dplyr::rename(Gender = n)
 
-religion_types <- datasheet_religion %>% dplyr::count(type, sort=TRUE) %>% 
+religion_types <- datasheet_religion %>% dplyr::count(document_type, sort=TRUE) %>% 
   dplyr::rename(Religion = n)
 
-community_types <- datasheet_community %>% dplyr::count(type, sort=TRUE) %>% 
+community_types <- datasheet_community %>% dplyr::count(document_type, sort=TRUE) %>% 
   dplyr::rename(Community = n)
 
 all_types <- youth_types %>% dplyr::full_join(gender_types) %>% dplyr::full_join(religion_types) %>% dplyr::full_join(community_types)
@@ -133,7 +133,7 @@ ggplot(theme_timecount, aes(x=year, y=n, fill=theme)) +
 
 ```{r}
 #Youth
-youth_primary <- datasheet_youth %>% dplyr::filter(type %in% c("research", "program evaluation"))
+youth_primary <- datasheet_youth %>% dplyr::filter(document_type %in% c("research", "program evaluation"))
 
 youth_evidence <- dplyr::bind_rows(
   data.frame(x="n", Youth=nrow(youth_primary)),
@@ -144,7 +144,7 @@ youth_evidence <- dplyr::bind_rows(
     dplyr::rename(Youth = n))
 
 #Gender
-gender_primary <- datasheet_gender %>% dplyr::filter(type %in% c("research", "program evaluation"))
+gender_primary <- datasheet_gender %>% dplyr::filter(document_type %in% c("research", "program evaluation"))
 
 gender_evidence <- dplyr::bind_rows(
   data.frame(x="n", Gender=nrow(gender_primary)),
@@ -155,7 +155,7 @@ gender_evidence <- dplyr::bind_rows(
     dplyr::rename(Gender = n))
 
 #Religion
-religion_primary <- datasheet_religion %>% dplyr::filter(type %in% c("research", "program evaluation"))
+religion_primary <- datasheet_religion %>% dplyr::filter(document_type %in% c("research", "program evaluation"))
 
 religion_evidence <- dplyr::bind_rows(
   data.frame(x="n", Religion=nrow(religion_primary)),
@@ -166,7 +166,7 @@ religion_evidence <- dplyr::bind_rows(
     dplyr::rename(Religion = n))
 
 #community
-community_primary <- datasheet_community %>% dplyr::filter(type %in% c("research", "program evaluation"))
+community_primary <- datasheet_community %>% dplyr::filter(document_type %in% c("research", "program evaluation"))
 
 community_evidence <- dplyr::bind_rows(
   data.frame(x="n", Community=nrow(community_primary)),
@@ -372,11 +372,11 @@ library(ggplot2)
 
 datasheet_all <- dplyr::bind_rows(datasheet_youth, datasheet_gender, datasheet_religion, datasheet_community) 
 
-all_type_timecount <- datasheet_all %>% dplyr::count(year, type) %>% 
-  dplyr::full_join(tidyr::expand_grid(type = unique(datasheet_all$type), year = unique(datasheet_all$year))) %>% 
-  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
+all_type_timecount <- datasheet_all %>% dplyr::count(year, document_type) %>% 
+  dplyr::full_join(tidyr::expand_grid(document_type = unique(datasheet_all$document_type), year = unique(datasheet_all$year))) %>% 
+  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(document_type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
 
-ggplot(all_type_timecount, aes(x=year, y=n, fill=type)) + 
+ggplot(all_type_timecount, aes(x=year, y=n, fill=document_type)) + 
   geom_area() + 
   scale_fill_brewer(palette = "Set1") + 
   ylab("Number of documents\n") + 
@@ -390,11 +390,11 @@ ggplot(all_type_timecount, aes(x=year, y=n, fill=type)) +
 ```{r eval=FALSE, include=FALSE}
 library(ggplot2)
 
-youth_type_timecount <- datasheet_youth %>% dplyr::count(year, type) %>% 
-  dplyr::full_join(tidyr::expand_grid(type = unique(datasheet_youth$type), year = unique(datasheet_youth$year))) %>% 
-  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
+youth_type_timecount <- datasheet_youth %>% dplyr::count(year, document_type) %>% 
+  dplyr::full_join(tidyr::expand_grid(document_type = unique(datasheet_youth$document_type), year = unique(datasheet_youth$year))) %>% 
+  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(document_type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
 
-ggplot(youth_type_timecount, aes(x=year, y=n, fill=type)) + 
+ggplot(youth_type_timecount, aes(x=year, y=n, fill=document_type)) + 
     geom_area() 
 
 ```
@@ -402,11 +402,11 @@ ggplot(youth_type_timecount, aes(x=year, y=n, fill=type)) +
 ```{r eval=FALSE, include=FALSE}
 library(ggplot2)
 
-gender_type_timecount <- datasheet_gender %>% dplyr::count(year, type) %>% 
-  dplyr::full_join(tidyr::expand_grid(type = unique(datasheet_gender$type), year = unique(datasheet_gender$year))) %>% 
-  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
+gender_type_timecount <- datasheet_gender %>% dplyr::count(year, document_type) %>% 
+  dplyr::full_join(tidyr::expand_grid(document_type = unique(datasheet_gender$document_type), year = unique(datasheet_gender$year))) %>% 
+  dplyr::mutate(year=as.numeric(year)) %>% dplyr::filter(!(is.na(year)), !(is.na(document_type))) %>% dplyr::mutate(n = ifelse(is.na(n), 0, n))
 
-ggplot(gender_type_timecount, aes(x=year, y=n, fill=type)) + 
+ggplot(gender_type_timecount, aes(x=year, y=n, fill=document_type)) + 
     geom_area()
 
 ```
