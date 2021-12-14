@@ -3,7 +3,7 @@ Github Repository for the USIP report "P/CVE Foundations and Evidence"
 
 ### The Report
 - [Report](https://docs.google.com/document/d/1pTLRVohA5Ex-x9ljZqZLp6SFhB0Vs4Fm/edit#heading=h.30j0zll)
-- [Appendices](https://docs.google.com/document/d/1mf7wd-ua0oBhmY5kAVz8KU75p6Hp_NgEvuZvCrHPtco/edit?usp=sharing) (bibiography of assessed research, list of interviees)
+- [Appendices](https://docs.google.com/document/d/1mf7wd-ua0oBhmY5kAVz8KU75p6Hp_NgEvuZvCrHPtco/edit?usp=sharing) (bibiography of assessed research, list of interviewees)
 
 ### Authors:
 
