@@ -13,7 +13,7 @@ Github Repository for the USIP report "P/CVE Foundations and Evidence"
 
 
 ### Dataset of PCVE Literature
-  - [PCVE Litertaure Codebook](https://docs.google.com/document/d/1veDsKMscq0yUXlpB9NHZInKJZIOSnzgqteJx5_8s4PE/edit?usp=sharing)
+  - [PCVE Literature Codebook](https://docs.google.com/document/d/1veDsKMscq0yUXlpB9NHZInKJZIOSnzgqteJx5_8s4PE/edit?usp=sharing)
   - [PCVE Literature Datasheet](https://docs.google.com/spreadsheets/d/1QCnLUwvHdO8qGGpwNYCdU_2eycPX1PkUnuxRS8RGkbs/edit#gid=1007627490)
 
 ### Replication Code
